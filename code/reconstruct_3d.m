@@ -85,7 +85,6 @@ for ti = 1:length(t)
         Z2 = R2(3,:)*points_3d'+t2(3);Z2 = Z2';
         num_points(ti,ri) = sum(Z1>0 & Z2>0);
         
-                
     end
 end
 
@@ -104,7 +103,7 @@ points = find_3d_points(matches, P1, P2); % <-----------------------------------
 %% -------- plot points and centers of cameras ----------------------------
 
 
-plot_3d(); % <-------------------------------------------------------------- You write this one!
+plot_3d(points_3d, R2, t2); % <-------------------------------------------------------------- You write this one!
 
 
 
