@@ -17,7 +17,7 @@ function [ points_3d rec_err ] = find_3d_points(matches, P1, P2)
             P2(3, 1)*y2 - P2(2, 1), P2(3, 2)*y2 - P2(2, 2), P2(3, 3)*y2 - P2(2, 3)];
         %[r, c] = size(A);
         %fprintf('size = %d %d\n', r, c);
-        b = [P1(3, 4)*x1 - P1(1, 4); P1(3, 4)*y1 - P1(2, 4); P2(3, 4)*x2 - P2(1, 4); P2(3, 4)*y2 - P2(2, 4)];
+        b = [P1(1, 4) - P1(3, 4)*x1; P1(2, 4) - P1(3, 4)*y1; P2(1, 4) - P2(3, 4)*x2; P2(2, 4) - P2(3, 4)*y2];
         % solve linear least square
         points_3d(i, :) = inv(A'*A)*A'*b;
         project1 = P1 * [points_3d(i, :), 1]';
@@ -28,11 +28,17 @@ function [ points_3d rec_err ] = find_3d_points(matches, P1, P2)
     end
     % sanity check using pair 1
     %disp(points_3d(1, :));
-    %project = P1 * [points_3d(1, :), 1]';
-    %project_2d = [project(1)/project(3), project(2)/project(3)];
-    %disp(project_2d);
+    %project1 = P1 * [points_3d(1, :), 1]';
+    %project1_2d = [project1(1)/project1(3), project1(2)/project1(3)];
+    %disp(project1_2d);
     %disp(matches(1, 1:2));
-    %disp(norm(matches(1, 1:2) - project_2d));
+    %disp(norm(matches(1, 1:2) - project1_2d));
+    %fprintf('-------\n');
+    %project2 = P2 * [points_3d(1, :), 1]';
+    %project2_2d = [project2(1)/project2(3), project2(2)/project2(3)];
+    %disp(project2_2d);
+    %disp(matches(1, 3:4));
+    %disp(norm(matches(1, 3:4) - project2_2d));
     rec_err = rec_err / (N * 2);
 end
 
