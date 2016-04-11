@@ -26,7 +26,6 @@ T2 = [ 1/sX2, 0, -uX2/sX2; 0, 1/sY2, -uY2/sY2; 0, 0, 1];
 % least squre to estimate F
 A = [X1.*X2, Y1.*X2, X2, X1.*Y2, Y1.*Y2, Y2, X1, Y1, ones(N, 1)];
 [~, S, V] = svd(A, 0);
-disp(S);
 f = V(:, end);
 F = reshape(f, 3, 3)';
 
