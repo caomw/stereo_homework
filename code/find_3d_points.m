@@ -19,7 +19,7 @@ function [ points_3d rec_err ] = find_3d_points(matches, P1, P2)
         %fprintf('size = %d %d\n', r, c);
         b = [P1(1, 4) - P1(3, 4)*x1; P1(2, 4) - P1(3, 4)*y1; P2(1, 4) - P2(3, 4)*x2; P2(2, 4) - P2(3, 4)*y2];
         % solve linear least square
-        points_3d(i, :) = inv(A'*A)*A'*b;
+        points_3d(i, :) = A \ b;
         project1 = P1 * [points_3d(i, :), 1]';
         project1_2d = [project1(1)/project1(3), project1(2)/project1(3)];
         project2 = P2 * [points_3d(i, :), 1]';
