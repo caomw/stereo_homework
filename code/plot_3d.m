@@ -5,13 +5,10 @@ function plot_3d(points_3d, R2, t2, I1, matches)
     
     depth = points_3d(:, 3);
     depth = (depth - min(depth)) / (max(depth) - min(depth)) / 1.5;
-    
     depth_colors = hsv2rgb([depth, ones(N, 2)]);
     
     colors = {'ob', 'og', 'oy', 'oc'};
-
     [h, w, ~] = size(I1);
-    
     x1 = matches(:, 1);
     y1 = matches(:, 2);
     color_vec = 1 + (x1 > w/2) + 2*(y1 > h/2);
@@ -40,16 +37,14 @@ function plot_3d(points_3d, R2, t2, I1, matches)
     y = points_3d(:, 2);
     z = points_3d(:, 3);
     
-    scatter3(Ox, Oy, Oz, 'r');
+    scatter3(Ox, Oy, -Oz, 'r');
 %     scatter3( z,  x,  y, 'w'); hold on;
     %x = [points_3d(:, 1)', O2(1, 1)];
     %y = [points_3d(:, 2)', O2(2, 1)];
     %z = [points_3d(:, 3)', O2(3, 1)];
 
     for n = 1:N
-      plot3(x(n), y(n), z(n), colors{color_vec(n)}, 'MarkerSize', 30/points_3d(n, 3));
+      plot3(x(n), y(n), -z(n), colors{color_vec(n)}, 'MarkerSize', 30/points_3d(n, 3));
     end
-    
-%     
     
 end
