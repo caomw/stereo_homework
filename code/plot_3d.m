@@ -27,8 +27,6 @@ function plot_3d(points_3d, R2, t2, I1, matches)
       plot(x1(n), y1(n), colors{color_vec(n)}, 'MarkerSize', 20/points_3d(n, 3));
     end
     
-    figure;
-    hold on;
     O2 = -R2 \ t2;
     Ox = [0, O2(1)];
     Oy = [0, O2(2)];
@@ -37,12 +35,16 @@ function plot_3d(points_3d, R2, t2, I1, matches)
     y = points_3d(:, 2);
     z = points_3d(:, 3);
     
+    figure;
+    hold on;
     scatter3(-Ox, -Oy, Oz, 'r');
-%     scatter3( z,  x,  y, 'w'); hold on;
-    %x = [points_3d(:, 1)', O2(1, 1)];
-    %y = [points_3d(:, 2)', O2(2, 1)];
-    %z = [points_3d(:, 3)', O2(3, 1)];
-
+    for n = 1:N
+      plot3(-x(n), -y(n), z(n), 'o', 'MarkerSize', 30/points_3d(n, 3), 'MarkerEdgeColor', depth_colors(n, :));
+    end
+    
+    figure;
+    hold on;
+    scatter3(-Ox, -Oy, Oz, 'r');
     for n = 1:N
       plot3(-x(n), -y(n), z(n), colors{color_vec(n)}, 'MarkerSize', 30/points_3d(n, 3));
     end
