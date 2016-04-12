@@ -44,7 +44,7 @@ function plot_3d(points_3d, R2, t2, I1, matches)
     %z = [points_3d(:, 3)', O2(3, 1)];
 
     for n = 1:N
-      plot3(x(n), y(n), -z(n), colors{color_vec(n)}, 'MarkerSize', 30/points_3d(n, 3));
+      plot3(-x(n), -y(n), z(n), colors{color_vec(n)}, 'MarkerSize', 30/points_3d(n, 3));
     end
     
 end
