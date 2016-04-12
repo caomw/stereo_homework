@@ -37,7 +37,7 @@ function plot_3d(points_3d, R2, t2, I1, matches)
     y = points_3d(:, 2);
     z = points_3d(:, 3);
     
-    scatter3(Ox, Oy, -Oz, 'r');
+    scatter3(-Ox, -Oy, Oz, 'r');
 %     scatter3( z,  x,  y, 'w'); hold on;
     %x = [points_3d(:, 1)', O2(1, 1)];
     %y = [points_3d(:, 2)', O2(2, 1)];
