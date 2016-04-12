@@ -2,6 +2,12 @@ function plot_3d(points_3d, R2, t2, I1, matches)
 %PLOT_3D Summary of this function goes here
 %   Detailed explanation goes here
     N = size(matches, 1);
+    
+    depth = points_3d(:, 3);
+    depth = (depth - min(depth)) / (max(depth) - min(depth)) / 1.5;
+    
+    depth_colors = hsv2rgb([depth, ones(N, 2)]);
+    
     colors = {'ob', 'og', 'oy', 'oc'};
 
     [h, w, ~] = size(I1);
@@ -9,6 +15,13 @@ function plot_3d(points_3d, R2, t2, I1, matches)
     x1 = matches(:, 1);
     y1 = matches(:, 2);
     color_vec = 1 + (x1 > w/2) + 2*(y1 > h/2);
+    
+    figure;
+    imshow(I1);
+    hold on;
+    for n = 1:N
+      plot(x1(n), y1(n), 'o', 'MarkerSize', 20/points_3d(n, 3), 'MarkerEdgeColor', depth_colors(n, :));
+    end
     
     figure;
     imshow(I1);
