@@ -37,14 +37,14 @@ function plot_3d(points_3d, R2, t2, I1, matches)
     
     figure;
     hold on;
-    scatter3(-Ox, -Oy, Oz, 'r');
+    scatter3(-Ox, -Oy, Oz, '+r');
     for n = 1:N
       plot3(-x(n), -y(n), z(n), 'o', 'MarkerSize', 30/points_3d(n, 3), 'MarkerEdgeColor', depth_colors(n, :));
     end
     
     figure;
     hold on;
-    scatter3(-Ox, -Oy, Oz, 'r');
+    scatter3(-Ox, -Oy, Oz, '+r');
     for n = 1:N
       plot3(-x(n), -y(n), z(n), colors{color_vec(n)}, 'MarkerSize', 30/points_3d(n, 3));
     end
